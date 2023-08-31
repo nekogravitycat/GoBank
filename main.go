@@ -40,7 +40,7 @@ func deposit(c *gin.Context) {
 	}
 
 	balance += amount
-	c.Data(http.StatusAccepted, RETURNTYPE, []byte("Success, current balance: "+strconv.Itoa(balance)))
+	c.Data(http.StatusAccepted, RETURNTYPE, []byte("Success, current balance: $"+strconv.Itoa(balance)))
 }
 
 func withdraw(c *gin.Context) {
@@ -57,8 +57,13 @@ func withdraw(c *gin.Context) {
 		return
 	}
 
+	if balance-amount < 0 {
+		c.Data(http.StatusBadRequest, RETURNTYPE, []byte("Insufficient balance: $"+strconv.Itoa(balance)))
+		return
+	}
+
 	balance -= amount
-	c.Data(http.StatusAccepted, RETURNTYPE, []byte("Success, current balance: "+strconv.Itoa(balance)))
+	c.Data(http.StatusAccepted, RETURNTYPE, []byte("Success, current balance: $"+strconv.Itoa(balance)))
 }
 
 func hello(c *gin.Context) {
