@@ -16,7 +16,6 @@ func main() {
 	r.GET("/balance", getBalance)
 	r.GET("/deposit/:input", deposit)
 	r.GET("/withdraw/:input", withdraw)
-	r.GET("/", hello)
 	r.Run() // listen and serve on 0.0.0.0:8080
 }
 
@@ -64,9 +63,4 @@ func withdraw(c *gin.Context) {
 
 	balance -= amount
 	c.Data(http.StatusAccepted, RETURNTYPE, []byte("Success, current balance: $"+strconv.Itoa(balance)))
-}
-
-func hello(c *gin.Context) {
-	msg := []byte("hello world")
-	c.Data(http.StatusOK, "text/plain; charset=utf-8", msg)
 }
