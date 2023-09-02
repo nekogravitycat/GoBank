@@ -13,10 +13,29 @@ const RETURNTYPE = "text/plain; charset=utf-8"
 
 func main() {
 	r := gin.Default()
-	r.GET("/balance", getBalance)
-	r.GET("/deposit/:input", deposit)
-	r.GET("/withdraw/:input", withdraw)
+	r.LoadHTMLGlob("templates/*")
+
+	r.GET("/", entry)
+	r.GET("/login", login)
+	r.GET("/atm", atm)
+
+	r.POST("/api/balance", getBalance)
+	r.POST("/api/deposit", deposit)
+	r.POST("/api/withdraw", withdraw)
+
 	r.Run() // listen and serve on 0.0.0.0:8080
+}
+
+func entry(c *gin.Context) {
+
+}
+
+func login(c *gin.Context) {
+
+}
+
+func atm(c *gin.Context) {
+
 }
 
 func getBalance(c *gin.Context) {

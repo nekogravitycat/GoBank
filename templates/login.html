@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- Tocas UI -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocas/4.2.4/tocas.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocas/4.2.4/tocas.min.js"></script>
+    <!-- Noto Sans TC -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
+    <!-- Title -->
+    <title>WebATM Login</title>
+  </head>
+  <body>
+    <div class="ts-center ts-container">
+      <div class="ts-box">
+        <div class="ts-content is-tertiary is-dense">
+					<div class="ts-text is-large ts-center is-heavy">WebATM Login</div>
+				</div>
+        <div class="ts-content">
+          <form action="/login", method="post">
+            <div class="ts-wrap is-vertical">
+              <label>Account</label>
+              <div class="ts-input is-fluid is-medium is-solid is-start-icon">
+                <span class="ts-icon is-envelope-icon"></span>
+                <input type="email" name="email" placeholder="address@example.com" id="email_input" required>
+              </div>
+              <label>Password</label>
+              <div class="ts-input is-fluid is-medium is-solid is-start-icon">
+                <span class="ts-icon is-lock-icon"></span>
+                <input type="password" name="password" id="password_input" required>
+              </div>
+              <button class="ts-button is-fluid is-start-icon" id="submit_btn">
+								<span class="ts-icon is-check-icon"></span>
+								<span class="ts-text is-medium is-heavy" id="submit_btn_text">Login</span>
+							</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+
+  </script>
+</html>
