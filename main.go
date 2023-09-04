@@ -16,9 +16,10 @@ func main() {
 	r.LoadHTMLGlob("templates/*")
 
 	r.GET("/", entry)
-	r.GET("/login", login)
+	r.GET("/login", loginPage)
 	r.GET("/atm", atm)
 
+	r.POST("/login", loginForm)
 	r.POST("/api/balance", getBalance)
 	r.POST("/api/deposit", deposit)
 	r.POST("/api/withdraw", withdraw)
@@ -30,7 +31,11 @@ func entry(c *gin.Context) {
 
 }
 
-func login(c *gin.Context) {
+func loginPage(c *gin.Context) {
+
+}
+
+func loginForm(c *gin.Context) {
 
 }
 
