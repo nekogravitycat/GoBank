@@ -15,40 +15,25 @@ func main() {
 	r := gin.Default()
 	r.LoadHTMLGlob("templates/*")
 
-	r.GET("/", entry)
-	r.GET("/login", loginPage)
-	r.GET("/atm", atm)
+	r.GET("/atm", WebATM)
 
-	r.POST("/login", loginForm)
-	r.POST("/api/balance", getBalance)
-	r.POST("/api/deposit", deposit)
-	r.POST("/api/withdraw", withdraw)
+	r.POST("/api/balance", APIBalance)
+	r.POST("/api/deposit", APIDeposit)
+	r.POST("/api/withdraw", APIWithdraw)
 
 	r.Run() // listen and serve on 0.0.0.0:8080
 }
 
-func entry(c *gin.Context) {
+func WebATM(c *gin.Context) {
 
 }
 
-func loginPage(c *gin.Context) {
-
-}
-
-func loginForm(c *gin.Context) {
-
-}
-
-func atm(c *gin.Context) {
-
-}
-
-func getBalance(c *gin.Context) {
+func APIBalance(c *gin.Context) {
 	msg := "Your balance: $" + strconv.Itoa(balance)
 	c.Data(http.StatusOK, "text/plain; charset=utf-8", []byte(msg))
 }
 
-func deposit(c *gin.Context) {
+func APIDeposit(c *gin.Context) {
 	input := c.Param("input")
 	amount, err := strconv.Atoi(input)
 
@@ -66,7 +51,7 @@ func deposit(c *gin.Context) {
 	c.Data(http.StatusAccepted, RETURNTYPE, []byte("Success, current balance: $"+strconv.Itoa(balance)))
 }
 
-func withdraw(c *gin.Context) {
+func APIWithdraw(c *gin.Context) {
 	input := c.Param("input")
 	amount, err := strconv.Atoi(input)
 
