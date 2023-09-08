@@ -15,7 +15,7 @@ func main() {
 	r := gin.Default()
 	r.LoadHTMLGlob("templates/*")
 
-	r.GET("/atm", WebATM)
+	r.GET("/", WebATM)
 
 	r.POST("/api/balance", APIBalance)
 	r.POST("/api/deposit", APIDeposit)
@@ -25,7 +25,9 @@ func main() {
 }
 
 func WebATM(c *gin.Context) {
-
+	c.HTML(http.StatusOK, "webatm.html", gin.H{
+		"balance": balance,
+	})
 }
 
 func APIBalance(c *gin.Context) {
@@ -34,7 +36,7 @@ func APIBalance(c *gin.Context) {
 }
 
 func APIDeposit(c *gin.Context) {
-	input := c.Param("input")
+	input := c.PostForm("amount")
 	amount, err := strconv.Atoi(input)
 
 	if err != nil {
@@ -48,11 +50,12 @@ func APIDeposit(c *gin.Context) {
 	}
 
 	balance += amount
-	c.Data(http.StatusAccepted, RETURNTYPE, []byte("Success, current balance: $"+strconv.Itoa(balance)))
+	c.Redirect(http.StatusSeeOther, "/")
+	//c.Data(http.StatusAccepted, RETURNTYPE, []byte("Success, current balance: $"+strconv.Itoa(balance)))
 }
 
 func APIWithdraw(c *gin.Context) {
-	input := c.Param("input")
+	input := c.PostForm("amount")
 	amount, err := strconv.Atoi(input)
 
 	if err != nil {
@@ -71,5 +74,6 @@ func APIWithdraw(c *gin.Context) {
 	}
 
 	balance -= amount
-	c.Data(http.StatusAccepted, RETURNTYPE, []byte("Success, current balance: $"+strconv.Itoa(balance)))
+	c.Redirect(http.StatusSeeOther, "/")
+	//c.Data(http.StatusAccepted, RETURNTYPE, []byte("Success, current balance: $"+strconv.Itoa(balance)))
 }

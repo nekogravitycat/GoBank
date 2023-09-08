@@ -17,37 +17,37 @@
         <div class="ts-content is-padded">
           <div class="ts-header is-center-aligned">Web ATM</div>
           <div class="ts-segment is-tertiary">
-            Tocas UI 是卡莉絲伊繁星的設計語言，而卡莉絲伊繁星屬對空音商事有限公司。
+            Balance: {{ .balance }}
           </div>
           <div class="ts-tab is-center-aligned">
             <button class="item is-active" data-tab="deposit">Deposit</button>
             <button class="item" data-tab="withdraw">Withdraw</button>
           </div>
           <div class="ts-segment" data-name="deposit">
-            <form>
+            <form action="/api/deposit" method="post">
               <div class="ts-wrap is-vertical">
                 <div class="content is-fluid">
                   <div class="ts-input is-solid is-start-labeled">
                     <span class="label">$</span>
-                    <input type="text">
+                    <input type="number" name="amount" required>
                   </div>
                 </div>
                 <div class="ts-divider"></div>
-                <div class="ts-button">DEPOSIT</div>
+                <button class="ts-button">DEPOSIT</button>
               </div>
             </form>
           </div>
           <div class="ts-segment" data-name="withdraw">
-            <form>
+            <form action="/api/withdraw" method="post">
               <div class="ts-wrap is-vertical">
                 <div class="content is-fluid">
                   <div class="ts-input is-solid is-start-labeled">
                     <span class="label">$</span>
-                    <input type="text">
+                    <input type="number" name="amount" required>
                   </div>
                 </div>
                 <div class="ts-divider"></div>
-                <div class="ts-button">WITHDRAW</div>
+                <button class="ts-button">WITHDRAW</button>
               </div>
             </form>
           </div>
